@@ -1,0 +1,177 @@
+# 1. Array Creation
+a = np.array([1, 2, 3, 4, 5])
+b = np.arange(1, 10, 2)
+c = np.linspace(0, 1, 5)
+d = np.zeros((2, 3))
+e = np.ones((2, 2))
+f = np.eye(3)
+g = np.random.randint(1, 100, size=(3, 3))
+
+print("Array a:", a)
+print("Arange b:", b)
+print("Linspace c:", c)
+print("Zeros d:\n", d)
+print("Ones e:\n", e)
+print("Identity f:\n", f)
+print("Random g:\n", g)
+
+     
+Array a: [1 2 3 4 5]
+Arange b: [1 3 5 7 9]
+Linspace c: [0.   0.25 0.5  0.75 1.  ]
+Zeros d:
+ [[0. 0. 0.]
+ [0. 0. 0.]]
+Ones e:
+ [[1. 1.]
+ [1. 1.]]
+Identity f:
+ [[1. 0. 0.]
+ [0. 1. 0.]
+ [0. 0. 1.]]
+Random g:
+ [[98 35  8]
+ [59 82 31]
+ [40  9 91]]
+
+# 2. Array Properties
+print("\nShape:", g.shape)
+print("Dimensions:", g.ndim)
+print("Size:", g.size)
+print("Data type:", g.dtype)
+
+     
+Shape: (3, 3)
+Dimensions: 2
+Size: 9
+Data type: int64
+
+
+
+# 3. Reshape & Transpose
+reshaped = g.reshape(1, 9)
+print("\nReshaped array:", reshaped)
+print("Transpose:\n", g.T)
+print("Flattened:", g.flatten())
+
+# 4. Mathematical Operations
+print("\nAdd:", np.add(a, 2))
+print("Multiply:", np.multiply(a, 3))
+print("Square Root:", np.sqrt(a))
+print("Power:", np.power(a, 2))
+print("Absolute:", np.abs([-1, -2, 3]))
+
+     
+Reshaped array: [[98 35  8 59 82 31 40  9 91]]
+Transpose:
+ [[98 59 40]
+ [35 82  9]
+ [ 8 31 91]]
+Flattened: [98 35  8 59 82 31 40  9 91]
+
+Add: [3 4 5 6 7]
+Multiply: [ 3  6  9 12 15]
+Square Root: [1.         1.41421356 1.73205081 2.         2.23606798]
+Power: [ 1  4  9 16 25]
+Absolute: [1 2 3]
+
+
+     
+
+# 5 Statistical Functions
+print("\nMean:", np.mean(a))
+print("Median:", np.median(a))
+print("Standard Deviation:", np.std(a))
+print("Variance:", np.var(a))
+print("Minimum:", np.min(a))
+print("Maximum:", np.max(a))
+print("Sum:", np.sum(a))
+print("Percentile (50):", np.percentile(a, 50))
+
+# 6 Axis-based Operations
+print("\nColumn-wise Sum:\n", np.sum(g, axis=0))
+print("Row-wise Mean:\n", np.mean(g, axis=1))
+
+# 7 Indexing & Slicing
+print("\nFirst element:", a[0])
+print("Slice:", a[1:4])
+print("2D Slice:\n", g[0:2, 1:3])
+     
+Mean: 3.0
+Median: 3.0
+Standard Deviation: 1.4142135623730951
+Variance: 2.0
+Minimum: 1
+Maximum: 5
+Sum: 15
+Percentile (50): 3.0
+
+Column-wise Sum:
+ [197 126 130]
+Row-wise Mean:
+ [47.         57.33333333 46.66666667]
+
+First element: 1
+Slice: [2 3 4]
+2D Slice:
+ [[35  8]
+ [82 31]]
+
+# 8 Boolean & Conditional
+print("\nWhere > 50:\n", np.where(g > 50))
+print("Any > 90:", np.any(g > 90))
+print("All > 0:", np.all(g > 0))
+
+# 9 Sorting & Searching
+print("\nSorted a:", np.sort(a))
+print("Index of max:", np.argmax(a))
+print("Index of min:", np.argmin(a))
+print("Unique elements:", np.unique([1, 2, 2, 3, 4, 4]))
+
+# 10 Linear Algebra
+x = np.array([[1, 2], [3, 4]])
+y = np.array([[5, 6], [7, 8]])
+
+print("\nDot Product:\n", np.dot(x, y))
+print("Matrix Multiplication:\n", np.matmul(x, y))
+print("Determinant:", np.linalg.det(x))
+print("Inverse:\n", np.linalg.inv(x))
+     
+Where > 50:
+ (array([0, 1, 1, 2]), array([0, 0, 1, 2]))
+Any > 90: True
+All > 0: True
+
+Sorted a: [1 2 3 4 5]
+Index of max: 4
+Index of min: 0
+Unique elements: [1 2 3 4]
+
+Dot Product:
+ [[19 22]
+ [43 50]]
+Matrix Multiplication:
+ [[19 22]
+ [43 50]]
+Determinant: -2.0000000000000004
+Inverse:
+ [[-2.   1. ]
+ [ 1.5 -0.5]]
+
+p.random.seed(1)
+rand_sample = np.random.choice(a, size=3)
+print("\nRandom Choice:", rand_sample)
+
+# 12 Stack & Concatenate
+h1 = np.array([1, 2, 3])
+h2 = np.array([4, 5, 6])
+
+print("\nConcatenate:", np.concatenate((h1, h2)))
+print("Vertical Stack:\n", np.vstack((h1, h2)))
+print("Horizontal Stack:", np.hstack((h1, h2)))
+
+# 13 Save & Load
+np.save("sample_array.npy", a)
+loaded = np.load("sample_array.npy")
+print("\nLoaded Array:", loaded)
+     
