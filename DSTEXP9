@@ -1,0 +1,39 @@
+#Step 1: Import libraries
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+
+# Step 2: Load dataset
+data = pd.read_csv("/content/sample_data/california_housing_train.csv")
+
+# Create 'price_range' by discretizing 'median_house_value'
+data['price_range'] = pd.cut(data['median_house_value'], bins=5, labels=False)
+
+# Step 3: Define features and target
+X = data.drop(["median_house_value", "price_range"], axis=1)
+y = data["price_range"]
+
+# Step 4: Train-test split
+X_train, X_test, y_train, y_test = train_test_split(
+X, y, test_size=0.2, random_state=42)
+
+# Step 5: Feature scaling
+sScaler = StandardScaler()
+X_train = sScaler.fit_transform(X_train)
+X_test = sScaler.transform(X_test)
+
+# Step 6: Create KNN model
+knn = KNeighborsClassifier(n_neighbors=5)
+
+# Step 7: Train model
+knn.fit(X_train, y_train)
+
+# Step 8: Prediction
+y_pred = knn.predict(X_test)
+
+# Step 9: Evaluation
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print("Confusion Matrix:\n", confusion_matrix(y_test, y_pred))
+print("Classification Report:\n", classification_report(y_test, y_pred))
